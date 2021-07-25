@@ -1,4 +1,10 @@
 .container {
+    .loading {
+        color: green;
+    }
+    .errorMessage {
+        color: red;
+    }
     .task {
         padding: 1rem;
         .removeButton {
