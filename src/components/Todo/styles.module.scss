@@ -1,0 +1,47 @@
+.container {
+    .title {
+        text-align: center;
+    }
+    .inputTask {
+        text-align: center;
+    }
+    .addTaskButton {
+        text-align: center;
+    }
+    .loading {
+        color: green;
+    }
+    .errorMessage {
+        color: red;
+    }
+    .tasks {
+        .task {
+            &:hover {
+                background-color: rgb(205, 224, 165);
+            }
+            padding: 1em;
+            list-style: decimal;
+            .id {
+                margin-right: 1em;
+            }
+            
+            .content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .removeButton {
+                    margin-left: 1em;
+                    color: red;
+                    float: right;
+                    cursor: pointer;
+                    padding: calc(1em / 5);
+                    border: calc(1em / 16) solid transparent;
+                    &:hover {
+                        border: calc(1em / 16) solid green;
+                        background-color: blue;
+                    }
+                }
+            }
+        }
+    }
+}

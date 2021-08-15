@@ -1,10 +1,10 @@
 import React from 'react';
 import Counter from '../Counter';
 import Todo from '../Todo';
+import styles from './styles.module.scss'
 
 const Main = () => {
-    return <div>
-        <h1>Main</h1>
+    return <div className={styles.container}>
         <Counter />
         <hr />
         <Todo />

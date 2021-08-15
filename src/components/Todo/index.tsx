@@ -89,7 +89,7 @@ const Todo: React.FC<any> = () => {
         getTasksFromServer();
     }, []);
     return <div className={styles.container}>
-        <h2>To do List</h2>
+        <h2 className={styles.title}>To do List</h2>
         {/* <div>
             <button onClick={getTasksFromServer}>{loading ? 'Loading...' : 'Get To Do List From Server'}</button>
         </div> */}
@@ -99,20 +99,24 @@ const Todo: React.FC<any> = () => {
         <div className={styles.errorMessage}>
             {errorMessage ?? ''}
         </div>
-        <div>
+        <div className={styles.inputTask}>
             <input value={currentTask.value} onChange={(e) => setCurrentTask({
                 id: e.target.value + Math.random() * 1000000,
                 value: e.target.value
             })} onKeyPress={onKeyPress} />
         </div>
-        <div>
+        <div className={styles.addTaskButton}>
             <button onClick={addTask}>Add Task</button>
         </div>
         <div>
-            <ol>
-                {tasks?.length !== undefined && tasks.map(task => <li className={styles.task} key={task.id}><span>
+            <ol className={styles.tasks}>
+                {tasks?.length !== undefined && tasks.map(task => <li className={styles.task} key={task.id}>
+                    <div className={styles.content}>
+                    <span>
                     {task.value}
-                    </span><span className={styles.removeButton} onClick={() => onRemove(task)}>x</span></li>)}
+                    </span><span className={styles.removeButton} onClick={() => onRemove(task)}>x</span>
+                    </div>
+                    </li>)}
             </ol>
         </div>
     </div>
