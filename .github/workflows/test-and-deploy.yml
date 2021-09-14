@@ -1,4 +1,4 @@
-name: Test building production package
+name: Test & Deploy
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  ci:
+  test-building-production-package:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -46,5 +46,17 @@ jobs:
 
       - name: Build production 📦
         run: yarn prod     
+        
+      - name: Upload ci
+        uses: actions/upload-artifact@v2
+        with:
+          name: ci
+          path: ci
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
       
       
