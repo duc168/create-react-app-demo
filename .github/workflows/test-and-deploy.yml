@@ -79,7 +79,7 @@ jobs:
           set -x    
           mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
           echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-          echo $MY_DEPLOY_FILE >> my_deploy_file
+          echo "$MY_DEPLOY_FILE" >> my_deploy_file
           cat my_deploy_file     
           ls
           chmod 600 my_deploy_file
