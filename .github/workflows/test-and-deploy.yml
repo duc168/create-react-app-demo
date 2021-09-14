@@ -45,7 +45,12 @@ jobs:
         run: yarn
 
       - name: Build production 📦
-        run: yarn prod     
+        run: yarn prod  
+
+      - name: copy ssh_config to dist
+        run: |
+          set -x    
+          cp github/deploy/ssh_config dist/
 
       - name: Upload dist
         uses: actions/upload-artifact@v2
@@ -79,7 +84,7 @@ jobs:
           ls
           chmod 600 my_deploy_file
           mv my_deploy_file ~/.ssh/id_rsa
-          cp github/deploy/ssh_config ~/.ssh/config
+          mv dist/ssh_config ~/.ssh/config
         shell: bash
         env:
           MY_DEPLOY_FILE : ${{secrets.PRIVATE_DEPLOY_KEY}}
