@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import axios from "axios";
+import { ReactComponent as RefreshIcon} from '@/assets/refresh.svg'
 const Header = () => {
   const [data, setData] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -61,7 +62,7 @@ const Header = () => {
     <div className={styles.container}>
       <div>Data: {data}</div>
       <button onClick={getData}>
-        {loading ? "Getting data..." : "Get Data"}
+        {loading ? "Getting data..." : <RefreshIcon className={styles.icon} />}
       </button>
     </div>
   );

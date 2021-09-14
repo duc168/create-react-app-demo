@@ -33,11 +33,23 @@ module.exports = {
             {
                 test: /\.module\.s[ca]ss$/,
                 use: ["style-loader", "css-loader", "sass-loader"]
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack', 'url-loader'],
+              },
+            {
+                test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
+                type: "asset",
+            },
+
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+            "@": path.resolve('./src')
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -52,13 +64,13 @@ module.exports = {
         runtimeChunk: 'multiple',
         splitChunks: {
             cacheGroups: {
-              vendor: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendors',
-                chunks: 'all',
-              },
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
             },
-          },
+        },
     },
     output: {
         filename: '[name].[contenthash].js',

@@ -9,10 +9,13 @@
         text-align: center;
     }
     .loading {
-        color: green;
+        color: rgb(127, 52, 212);
+        text-align: center;
+        margin-bottom: 1rem;
     }
     .errorMessage {
         color: red;
+        text-align: center;
     }
     .tasks {
         .task {
