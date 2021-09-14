@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path')
 
 module.exports = {
     mode: "development",
@@ -42,5 +43,26 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html'
         })
-    ]
+    ],
+    optimization: {
+        minimize: true,
+        chunkIds: 'deterministic',
+        moduleIds: 'deterministic',
+        realContentHash: false,
+        runtimeChunk: 'multiple',
+        splitChunks: {
+            cacheGroups: {
+              vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors',
+                chunks: 'all',
+              },
+            },
+          },
+    },
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+    },
 }
