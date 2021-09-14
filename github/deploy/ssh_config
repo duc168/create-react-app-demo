@@ -1,4 +1,2 @@
-Host thisRepository
-        StrictHostKeyChecking no
-        Hostname github.com
-        IdentityFile=/home/runner/.ssh/id_rsa
+Host *
+    StrictHostKeyChecking no
