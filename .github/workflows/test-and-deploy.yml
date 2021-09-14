@@ -60,7 +60,7 @@ jobs:
           path: dist
       
   deployment:
-    needs: ci
+    needs: testing
     runs-on: ${{ matrix.os }}
     # if: "contains(github.event.head_commit.message, 'deploy')"
 
