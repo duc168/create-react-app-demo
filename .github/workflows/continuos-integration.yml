@@ -1,4 +1,4 @@
-name: Make sure code is working
+name: Test building production package
 
 on:
   push:
