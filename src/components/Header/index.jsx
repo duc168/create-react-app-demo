@@ -15,47 +15,23 @@ const Header = () => {
   //   });
   const getData = () => {
     setLoading(true);
-    axios
-      .get("http://localhost:9191")
-      .then((res) => {
-        const {
-          data: { test },
-        } = res.data;
-        setData(test);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    // fetch('http://localhost:9191').then(response => {
-    //     console.log('success ', response);
-    //     response.json().then(responseJson => {
-    //         console.log('success json ', responseJson);
-    //         setData(responseJson.data.test);
-    //     }).catch(errorJson => {
-    //         console.log('error json ', errorJson);
-    //     })
-    // }).catch(error => {
-    //     console.log('error ', error);
-    // }).finally(() => {
-    //     setLoading(false);
-    // });
-    // setLoading(true);
-    // testPromise
-    //   .then((response) => {
-    //     console.log("success ", response);
-    //     setData(response.data);
+    // axios
+    //   .get("http://localhost:9191")
+    //   .then((res) => {
+    //     const {
+    //       data: { test },
+    //     } = res.data;
+    //     setData(test);
     //   })
-    //   .catch((errorResponse) => {
-    //     console.log("error ", errorResponse);
+    //   .catch((err) => {
+    //     console.log("error", err);
     //   })
     //   .finally(() => {
-    //     console.log("promise is completed.");
     //     setLoading(false);
     //   });
-    // console.log("test Promise");
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
   };
 
   return (
