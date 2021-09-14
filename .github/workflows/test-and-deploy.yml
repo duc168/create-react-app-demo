@@ -91,13 +91,15 @@ jobs:
       - name: deploy
         run: |
           set -x    
+          ls 
+          ls ~/.ssh/
           cd dist
           git init
-          git remote add deploy "git@github.com:duc168/create-react-app-demo.git"
+          git remote add deploy "git@thisRepository:duc168/create-react-app-demo.git"
           git config user.name "Github Workflow Action"
           git config user.email "victor.tran.august@gmail.com"
           git checkout -b production
           git add .
-          git commit -m "Deploy"
+          git commit -m "Deploy"          
           git push --force deploy production
 
