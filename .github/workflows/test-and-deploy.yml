@@ -47,12 +47,6 @@ jobs:
       - name: Build production 📦
         run: yarn prod     
 
-      - name: Upload files to artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: testing
-          path: test-and-deploy
-
       - name: Upload dist
         uses: actions/upload-artifact@v2
         with:
@@ -70,12 +64,6 @@ jobs:
         node: [14.17.2]
 
     steps:
-      - name: Download files from artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: testing
-          path: test-and-deploy
-        
       - name: Download dist
         uses: actions/download-artifact@v2
         with:
