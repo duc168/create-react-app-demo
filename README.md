@@ -20,6 +20,7 @@ create-react-app-demo is a template for creating a react app fast and reliable w
 - Image Loader
 - Axios
 - Redux
+- Dotenv integration
 
 ## Installation
 

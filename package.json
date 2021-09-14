@@ -12,6 +12,7 @@
     "@types/react-dom": "17.0.9",
     "babel-loader": "8.2.2",
     "css-loader": "5.2.6",
+    "dotenv-webpack": "7.0.3",
     "html-webpack-plugin": "5.3.2",
     "sass": "1.35.2",
     "sass-loader": "12.1.0",
@@ -25,8 +26,8 @@
     "webpack-server": "0.1.2"
   },
   "scripts": {
-    "dev": "webpack serve",
-    "prod": "webpack --mode production"
+    "dev": "webpack serve --env development  --mode development ",
+    "prod": "webpack --env production --mode production"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.6.1",

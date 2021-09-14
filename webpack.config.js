@@ -1,7 +1,16 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path')
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
+module.exports = env => {
+    const getEnv = () => {
+        if (env.development === true) {
+            return 'development'
+        }
+        return 'production'
+    }
+    const $env = getEnv()
+ return {
     mode: "development",
     devServer: {
         port: 3333,
@@ -54,7 +63,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
-        })
+        }),
+        new Dotenv({
+			path: `./config/.env.${$env}`
+		}),
     ],
     optimization: {
         minimize: true,
@@ -77,4 +89,5 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
+ }   
 }

@@ -1,3 +1,4 @@
+import api from '@/services/api';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,9 +36,7 @@ const Todo: React.FC<any> = () => {
     }
     const addTaskToServer = () => {
         setLoading(true);
-        axios.post('http://localhost:9191/tasks', {
-            value: currentTask.value
-        }).then(res => {
+        api.addTask(currentTask.value).then(res => {
             console.log(res.data);
             // dispatch(syncTasksAction(res.data));
             setErrorMessage(undefined);
@@ -58,7 +57,7 @@ const Todo: React.FC<any> = () => {
     const getTasksFromServer = () => {
         if (loading === true) return
         setLoading(true);
-        axios.get('http://localhost:9191/tasks').then(res => {
+        api.getTasks().then(res => {
             console.log('success', res);
             const serverTasks = res.data;
             // addTasks(serverTasks);
@@ -72,7 +71,7 @@ const Todo: React.FC<any> = () => {
     const removeTaskFromServer = (removeTask: ITask) => {
         if (loading === true) return
         setLoading(true);
-        axios.delete(`http://localhost:9191/tasks/${removeTask.id}`).then(res => {
+        api.deleteTask(removeTask.id).then(res => {
             console.log('success', res.data);
             getTasksFromServer();
         }).catch(err => {
