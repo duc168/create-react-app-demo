@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  test-building-production-package:
+  ci:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -46,7 +46,7 @@ jobs:
 
       - name: Build production 📦
         run: yarn prod     
-        
+
       - name: Upload ci
         uses: actions/upload-artifact@v2
         with:
@@ -59,4 +59,53 @@ jobs:
           name: dist
           path: dist
       
-      
+  deployment:
+    needs: ci
+    runs-on: ${{ matrix.os }}
+    # if: "contains(github.event.head_commit.message, 'deploy')"
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14.17.2]
+
+    steps:
+      - name: Download ci
+        uses: actions/download-artifact@v2
+        with:
+          name: ci
+          path: ci
+        
+      - name: Download dist
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
+      - name: set up
+        run: |
+          set -x    
+          mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+          echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+          echo $MY_DEPLOY_FILE >> my_deploy_file
+          cat my_deploy_file     
+          ls
+          chmod 600 my_deploy_file
+          mv my_deploy_file ~/.ssh/id_rsa
+          cp github/deploy/ssh_config ~/.ssh/config
+        shell: bash
+        env:
+          MY_DEPLOY_FILE : ${{secrets.PRIVATE_DEPLOY_KEY}}
+      - name: deploy
+        run: |
+          set -x    
+          cd dist
+          git init
+          git remote add deploy "git@github.com:duc168/create-react-app-demo.git"
+          git config user.name "Github Workflow Action"
+          git config user.email "victor.tran.august@gmail.com"
+          git checkout -b production
+          git add .
+          git commit -m "Deploy"
+          git push --force deploy production
+
+          
