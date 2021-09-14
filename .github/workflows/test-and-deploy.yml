@@ -93,6 +93,11 @@ jobs:
           set -x    
           ls 
           ls ~/.ssh/
+          mkdir test
+          cd test
+          git clone "git@thisRepository:duc168/create-react-app-demo.git"
+          ls
+          cd ../
           cd dist
           git init
           git remote add deploy "git@thisRepository:duc168/create-react-app-demo.git"
