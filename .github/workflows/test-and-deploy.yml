@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  ci:
+  testing:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -47,11 +47,11 @@ jobs:
       - name: Build production 📦
         run: yarn prod     
 
-      - name: Upload ci
+      - name: Upload files to artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ci
-          path: ci
+          name: test-and-deploy
+          path: test-and-deploy
 
       - name: Upload dist
         uses: actions/upload-artifact@v2
@@ -70,11 +70,11 @@ jobs:
         node: [14.17.2]
 
     steps:
-      - name: Download ci
+      - name: Download files from artifact
         uses: actions/download-artifact@v2
         with:
-          name: ci
-          path: ci
+          name: test-and-deploy
+          path: test-and-deploy
         
       - name: Download dist
         uses: actions/download-artifact@v2
@@ -108,4 +108,3 @@ jobs:
           git commit -m "Deploy"
           git push --force deploy production
 
-          
