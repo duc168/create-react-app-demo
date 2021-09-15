@@ -19,6 +19,7 @@ module.exports = env => {
         devServer: {
             port: 3333,
             open: true,
+            historyApiFallback: true,
         },
         entry: './src/index.tsx',
         module: {
@@ -37,6 +38,10 @@ module.exports = env => {
                     test: /\.ts$|tsx/,
                     exclude: /node_modules/,
                     use: ["ts-loader"]
+                },
+                {
+                    test: /\.css$/i,
+                    use: ["style-loader", "css-loader", "sass-loader"]
                 },
                 {
                     test: /\.s[ca]ss$/i,
@@ -92,6 +97,7 @@ module.exports = env => {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'dist'),
             clean: true,
+            publicPath: "/"
         },
     }
 }
