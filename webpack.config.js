@@ -3,12 +3,15 @@ const path = require('path')
 const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
-    const getEnvFile = () => {
+   const getEnvFile = () => {
         const prefix = `.env`
-        if (env.development === true) {
+        if (env.dev === true) {
             return `${prefix}.development`
         }
-        if (env.production === true) {
+        if (env.stag === true) {
+            return `${prefix}.staging`
+        }
+        if (env.prod === true) {
             return `${prefix}.production`
         }
         return 'default'
