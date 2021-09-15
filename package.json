@@ -26,8 +26,10 @@
     "webpack-server": "0.1.2"
   },
   "scripts": {
-    "dev": "webpack serve --env development  --mode development ",
-    "prod": "webpack --env production --mode production"
+    "dev": "webpack serve",
+    "build-dev": "webpack --env dev --mode production",
+    "build-stag": "webpack --env stag --mode production",
+    "build-prod": "webpack --env prod --mode production"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.6.1",
