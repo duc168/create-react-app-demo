@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;    
+    .form {
+        padding: 5rem;
+        width: 300px;  
+        .button {
+            margin: 3rem;
+        }  
+    }
+}

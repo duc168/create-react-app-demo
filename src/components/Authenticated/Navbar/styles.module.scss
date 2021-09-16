@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1rem;
+    .title {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 1rem;
+        .description {
+            position: relative;
+            top: -6px;
+            left: 4px;
+            font-size: 11px;
+            line-height: 20px;
+            color: #1174dc;
+        }
+    }
+    .menu {
+        position: relative;
+        height: 100%;
+        .signIn {
+            position: relative;
+        }
+        .logout {
+            position: relative;
+           
+        }
+    }
+}

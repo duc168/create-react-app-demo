@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authSlice from './authSlice';
 import counterSlice from './counterSlice'
 import todoSlice from './todoSlice';
 
 const store = configureStore({
   reducer: {
     counter: counterSlice,
-    todo: todoSlice
+    todo: todoSlice,
+    auth: authSlice
   },
 })
 
