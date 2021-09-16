@@ -1,14 +1,28 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path')
 const Dotenv = require('dotenv-webpack');
+const DefinePlugin = require('webpack').DefinePlugin
 
 module.exports = env => {
-   const getEnvFile = () => {
-        const prefix = `.env`
+    const getBasePath = () => {
+        if (env.dev === true) {
+            return `/`
+        }
+        if (env.stag === true) {
+            return `/create-react-app-demo`
+        }
+        if (env.prod === true) {            
+            return `/create-react-app-demo`
+        }
+        return '/'
+    }
+    const getEnvFile = () => {
+        const prefix = `env`
         if (env.dev === true) {
             return `${prefix}.development`
         }
         if (env.stag === true) {
+           
             return `${prefix}.staging`
         }
         if (env.prod === true) {
@@ -17,6 +31,7 @@ module.exports = env => {
         return 'default'
     }
     const $envFile = getEnvFile()
+    const currentPublicPath = getBasePath()
     return {
         mode: "development",
         devServer: {
@@ -61,7 +76,8 @@ module.exports = env => {
                 },
                 {
                     test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
-                    type: "asset",
+                    // type: "asset/resource",
+                    use: ['url-loader']
                 },
 
             ]
@@ -74,8 +90,12 @@ module.exports = env => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './public/index.html'
+                template: './public/index.html',
+                favicon: './public/favicon.ico'
             }),
+            new DefinePlugin({
+                'process.env.BASE_PATH': JSON.stringify(currentPublicPath)
+              }),
             new Dotenv({
                 path: `./config/${$envFile}`
             }),
@@ -100,7 +120,7 @@ module.exports = env => {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'dist'),
             clean: true,
-            publicPath: "/"
+            publicPath: currentPublicPath
         },
     }
 }

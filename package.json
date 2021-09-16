@@ -29,7 +29,8 @@
     "dev": "webpack serve",
     "build-dev": "webpack --env dev --mode production",
     "build-stag": "webpack --env stag --mode production",
-    "build-prod": "webpack --env prod --mode production"
+    "build-prod": "webpack --env prod --mode production",
+    "prod": "webpack --env prod --mode production"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.6.1",
