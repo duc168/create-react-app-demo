@@ -5,21 +5,24 @@ import FirmwareListPage from './list'
 import UpdateFirmwarePage from './update'
 const FirmwarePage: React.FC<any> = () => {
     const { path } = useRouteMatch()
+    const listPath = `${path}/list`
+    const createPath = `${path}/create`
+    const updatePath = `${path}/update/:firmwareId`
     return <Switch>
-        <Route path={`${path}/create`}>
+        <Route path={createPath}>
             <CreateFirmwarePage />
         </Route>
-        <Route path={`${path}/update/:firmwareId`}>
+        <Route path={updatePath}>
             <UpdateFirmwarePage />
         </Route>
-        <Route path={`${path}/list`}>
+        <Route path={listPath}>
             <FirmwareListPage />
         </Route>
         <Route path={`${path}/*`}>
-            <Redirect to={`${path}/list`} />
+            <Redirect to={listPath} />
         </Route>
         <Route path={`${path}`}>
-            <Redirect to={`${path}/list`} />
+            <Redirect to={listPath} />
         </Route>
         
     </Switch>

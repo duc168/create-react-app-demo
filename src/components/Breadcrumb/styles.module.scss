@@ -1,0 +1,31 @@
+.container {
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    color: #9C9C9C;
+    &.hide {
+        visibility: hidden;
+    }
+    .breadcrumb {
+        list-style: none;
+        padding-left: 0px;
+        user-select: none;
+        .li {
+            display: inline;
+            &+.li::before {
+                padding: 0.5rem;
+                content: "/\00a0"
+            }
+            .a {
+                cursor: pointer;
+                color: #222222;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }            
+        }
+    }
+}

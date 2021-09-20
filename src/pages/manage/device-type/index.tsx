@@ -5,22 +5,25 @@ import DeviceTypeListPage from "./list";
 import UpdateDeviceTypePage from "./update";
 const DeviceTypePage: React.FC<any> = () => {
   const { path } = useRouteMatch();
+  const createPath = `${path}/create`
+  const updatePath = `${path}/update/:deviceTypeId`
+  const listPath = `${path}/list`
   return (
     <Switch>
-      <Route path={`${path}/create`}>
+      <Route path={createPath}>
         <CreateDeviceTypePage />
       </Route>
-      <Route path={`${path}/update/:deviceTypeId`}>
+      <Route path={updatePath}>
         <UpdateDeviceTypePage />
       </Route>
-      <Route path={`${path}/list`}>
+      <Route path={listPath}>
         <DeviceTypeListPage />
       </Route>
       <Route path={`${path}/*`}>
-        <Redirect to={`${path}/list`} />
+        <Redirect to={listPath} />
       </Route>
       <Route path={`${path}`}>
-        <Redirect to={`${path}/list`} />
+        <Redirect to={listPath} />
       </Route>
     </Switch>
   );
