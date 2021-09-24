@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import {
   persistStore,
   persistReducer,
@@ -19,12 +19,14 @@ const persistConfig = {
 }
 import authSlice from './authSlice';
 import counterSlice from './counterSlice'
+import deviceTypeSlice from './deviceTypeSlice';
 import todoSlice from './todoSlice';
 
 const persistedReducer = persistReducer(persistConfig, combineReducers({
   counter: counterSlice,
   todo: todoSlice,
-  auth: authSlice
+  auth: authSlice,
+  deviceType: deviceTypeSlice
 }))
 
 const store = configureStore({
@@ -41,5 +43,11 @@ export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>
 
 export default store;

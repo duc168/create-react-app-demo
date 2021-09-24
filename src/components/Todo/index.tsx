@@ -1,9 +1,9 @@
-import api from '@/services/api';
+import api from '@/services/apiSample';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { addTodoTaskAction, ITask, removeTaskAction, syncTasksAction } from '../../redux/todoSlice';
+import { RootState } from '@/redux/store';
+import { addTodoTaskAction, ITask, removeTaskAction, syncTasksAction } from '@/redux/todoSlice';
 import styles from './styles.module.scss';
 const initialTask: ITask = {
     id: '',

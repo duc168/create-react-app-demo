@@ -16,7 +16,7 @@ const Navbar: React.FC<any> = () => {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Example<span className={styles.description}>OS</span></div>
+      <div className={styles.title}>Example 0.0.1<span className={styles.description}>OS</span></div>
       <div className={styles.menu}>
       {!isAuth && <div className={styles.signIn}>
         <button onClick={onClickSignIn}>Sign in</button>

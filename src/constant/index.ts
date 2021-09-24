@@ -1,0 +1,1 @@
+export const DEFAULT_THUMBNAIL_URL = `https://media.istockphoto.com/photos/blue-dotted-grunge-texture-background-picture-id637508072?b=1&k=20&m=637508072&s=170667a&w=0&h=8D3qqLdI7SWd11WIGp7zWiXSIPBk6f_zn9O8DLViwGY=`
